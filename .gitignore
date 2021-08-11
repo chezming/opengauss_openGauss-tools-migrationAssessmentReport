@@ -1,0 +1,7 @@
+.idea
+.mvn
+target
+node_modules
+package-lock.json
+src/main/resources/static/built
+MigrationAssessmentReport.iml
