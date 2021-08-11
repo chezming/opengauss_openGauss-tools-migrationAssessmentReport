@@ -1,4 +1,4 @@
-import {hashHistory, Route, Router, IndexRoute} from 'react-router'
+import {hashHistory, IndexRoute, Route, Router} from 'react-router'
 import SQLConvert from "./sqlconvert";
 import SQLCompatibility from "./sqlcompatibility";
 import MigrationMenu from "./menu";
@@ -6,8 +6,8 @@ import MigrationReport from "./migration";
 import SqlTable from "./sql";
 import HomePage from "./homepage";
 
-const React = require('react'); // <1>
-const ReactDOM = require('react-dom'); // <2>
+const React = require('react');
+const ReactDOM = require('react-dom');
 
 'use strict';
 

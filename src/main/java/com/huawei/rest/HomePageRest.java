@@ -1,6 +1,8 @@
 package com.huawei.rest;
 
-import java.io.FileWriter;
+import java.nio.charset.StandardCharsets;
+import java.io.FileOutputStream;
+import java.io.OutputStreamWriter;
 import java.io.IOException;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -33,7 +35,7 @@ public class HomePageRest {
     private void generateAwrReport(Long dbId, Long instanceNum, List<Long> snapIds) {
         final String awrPath = "./target/classes/static/awr.html";
         try {
-            FileWriter writer = new FileWriter(awrPath);
+            OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream(awrPath), StandardCharsets.UTF_8);
             writer.write("The AWR report is generating, please wait...\n");
             writer.flush();
             writer.close();
@@ -42,7 +44,8 @@ public class HomePageRest {
                 final List<String> awrLines = schemaMapper.generateAwr(dbId, instanceNum, snapIds.get(1),
                         snapIds.get(0));
 
-                writer = new FileWriter(awrPath);
+                writer = new OutputStreamWriter(new FileOutputStream(awrPath), StandardCharsets.UTF_8);
+                writer.write("<meta charset=\"UTF-8\"/>\n");
                 for (String awrLine : awrLines) {
                     if (awrLine != null) {
                         writer.write(awrLine + "\n");
@@ -50,9 +53,8 @@ public class HomePageRest {
                         writer.write("\n");
                     }
                 }
-
             } else {
-                writer = new FileWriter(awrPath);
+                writer = new OutputStreamWriter(new FileOutputStream(awrPath), StandardCharsets.UTF_8);
                 writer.write("The number of history snapshot is less than 2, can't generate AWR report!\n");
             }
             writer.flush();

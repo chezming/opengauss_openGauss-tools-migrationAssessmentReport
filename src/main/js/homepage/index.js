@@ -1,11 +1,10 @@
-import {Descriptions, Typography, Table} from 'antd';
-
-const {Title} = Typography;
-
+import {Descriptions, Table, Typography} from 'antd';
 import React from 'react';
 import CompatibilityChart from "./echart_compatibility";
 
-const client = require('../client'); // <3>
+const {Title} = Typography;
+
+const client = require('../client');
 
 
 class HomePage extends React.Component {
@@ -42,7 +41,7 @@ class HomePage extends React.Component {
         };
     }
 
-    componentDidMount() { // <2>
+    componentDidMount() {
         client({method: 'GET', path: '/home/overview'}).done(response => {
             this.setState({databaseName: response.entity['databaseName']});
             this.setState({databaseVersion: response.entity['databaseVersion']});

@@ -4,8 +4,8 @@ import SQLShow from "../sqlformatter/index.js";
 import "./index.css"
 import {format} from 'sql-formatter'
 
-const React = require('react'); // <1>
-const client = require('../client'); // <3>
+const React = require('react');
+const client = require('../client');
 const {Title, Paragraph, Text, Link} = Typography;
 const {TextArea} = Input;
 
@@ -104,7 +104,7 @@ class DBAObjectTable extends React.Component {
     };
 
 
-    componentDidMount() { // <2>
+    componentDidMount() {
         client({method: 'GET', path: '/summary/objects'}).done(response => {
             const data = [];
             let i = 0;

@@ -2,8 +2,8 @@ import {Modal, Table, Typography} from "antd";
 import "antd/dist/antd.css";
 import * as echarts from 'echarts';
 
-const React = require('react'); // <1>
-const client = require('../client'); // <3>
+const React = require('react');
+const client = require('../client');
 const { Title, Paragraph, Text, Link } = Typography;
 
 class TableStatisticBar extends React.Component {
@@ -110,7 +110,7 @@ class TableStatisticTable extends React.Component {
     };
 
 
-    componentDidMount() { // <2>
+    componentDidMount() {
         client({method: 'GET', path: '/summary/object/tablestatistic'}).done(response => {
             const data = [];
             let small = 0;
