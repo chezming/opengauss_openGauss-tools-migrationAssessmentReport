@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 import java.io.IOException;
 import java.util.List;
+import java.util.function.BiConsumer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -20,6 +21,7 @@ import com.huawei.jdbc.pojo.DatabaseVersion;
 import com.huawei.jdbc.pojo.DbInfo;
 import com.huawei.jdbc.pojo.OSState;
 import com.huawei.jdbc.pojo.SystemDetail;
+import com.huawei.util.ParseOsState;
 
 @RestController
 @RequestMapping("/home")
@@ -80,7 +82,6 @@ public class HomePageRest {
         }
         final List<OSState> osStates = schemaMapper.systemVersion();
         final DatabaseVersion databaseVersion = schemaMapper.databaseVersion();
-        final List<DataFiles> dataFiles = schemaMapper.dbaDataFiles();
         final String racStatus = schemaMapper.racStatus();
         final DbInfo dbInfo = schemaMapper.getDbInfo();
 
@@ -97,44 +98,14 @@ public class HomePageRest {
 
         systemDetail.setDatabaseVersion(databaseVersion.getFullVersion());
         systemDetail.setDatabaseName(databaseVersion.getProduct());
-        long idleTime = 0;
-        long busyTime = 0;
-        //        final String ip = schemaMapper.ip();
+
         for (OSState osState : osStates) {
-            switch (osState.getSTAT_NAME()) {
-                case "NUM_CPUS":
-                    systemDetail.setNumOfCpus(osState.getVALUE());
-                    break;
-                case "NUM_CPU_CORES":
-                    systemDetail.setNumOfCpuCores(osState.getVALUE());
-                    break;
-                case "PHYSICAL_MEMORY_BYTES": {
-                    final long value = Long.parseLong(osState.getVALUE()) / 1024 / 1024 / 1024;
-                    systemDetail.setPhysicalMem(value + "GB");
-                    break;
-                }
-                case "INACTIVE_MEMORY_BYTES": {
-                    final long value = Long.parseLong(osState.getVALUE()) / 1024 / 1024 / 1024;
-                    systemDetail.setVisualMem(value + "GB");
-                    break;
-                }
-                case "LOAD": {
-                    systemDetail.setLoad(osState.getVALUE());
-                    break;
-                }
-                case "IDLE_TIME": {
-                    idleTime = Long.parseLong(osState.getVALUE());
-                    break;
-                }
-                case "BUSY_TIME": {
-                    busyTime = Long.parseLong(osState.getVALUE());
-                    break;
-                }
-                default:
-                    break;
-            }
+            String statName = osState.getSTAT_NAME();
+            ParseOsState.call(statName).ifPresent(consumer -> consumer.accept(systemDetail, osState.getVALUE()));
         }
 
+        final long idleTime = Long.parseLong(systemDetail.getIdleTime());
+        final long busyTime = Long.parseLong(systemDetail.getBusyTime());
         if (idleTime != 0 && busyTime != 0) {
             final String utilization = String.format("%.2f%%", ((float) busyTime / (idleTime + busyTime)) * 100);
             systemDetail.setUtilization(utilization);
@@ -142,7 +113,7 @@ public class HomePageRest {
             systemDetail.setUtilization("N/A");
         }
 
-        systemDetail.setDataFiles(dataFiles);
+        systemDetail.setDataFiles(schemaMapper.dbaDataFiles());
 
         final Long dbId = dbInfo.getDbId();
         new Thread(() -> generateAwrReport(dbId, schemaMapper.getInstanceNum(), schemaMapper.getSnapId(dbId))).start();

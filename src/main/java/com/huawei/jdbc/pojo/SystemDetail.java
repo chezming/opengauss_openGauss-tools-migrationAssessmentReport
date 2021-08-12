@@ -18,6 +18,8 @@ public class SystemDetail {
     private String physicalMem;
     private String visualMem;
     private String load;
+    private String idleTime;
+    private String busyTime;
     private String utilization;
 
     private List<DataFiles> dataFiles;
@@ -163,4 +165,21 @@ public class SystemDetail {
         return this;
     }
 
+    public String getIdleTime() {
+        return idleTime;
+    }
+
+    public SystemDetail setIdleTime(String idleTime) {
+        this.idleTime = idleTime;
+        return this;
+    }
+
+    public String getBusyTime() {
+        return busyTime;
+    }
+
+    public SystemDetail setBusyTime(String busyTime) {
+        this.busyTime = busyTime;
+        return this;
+    }
 }

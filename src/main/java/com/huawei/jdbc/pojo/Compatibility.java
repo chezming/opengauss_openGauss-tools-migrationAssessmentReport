@@ -6,23 +6,18 @@ import com.huawei.jdbc.ObjectType;
 public class Compatibility {
     private ObjectType type;
 
-    private int total;
+    private int total = 0;
 
-    private int originError;
+    private int originError = 0;
 
-    private int targetSupport;
+    private int targetSupport = 0;
 
-    private int extensionSupport;
+    private int extensionSupport = 0;
 
-    private String conversionRate;
+    private String conversionRate = "0.00%";
 
     public Compatibility(ObjectType type) {
         this.type = type;
-        this.total = 0;
-        this.originError = 0;
-        this.targetSupport = 0;
-        this.extensionSupport = 0;
-        this.conversionRate = "0.00%";
     }
 
 

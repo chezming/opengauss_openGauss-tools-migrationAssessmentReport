@@ -182,7 +182,11 @@ public class AssessmentCache {
         }
         new Thread(() -> {
             while (atomicInteger.get() < 3) {
-                // pass
+                try {
+                    Thread.sleep(1000L);
+                } catch (InterruptedException e) {
+                    LOGGER.error("sleep failed: {}", e.getMessage());
+                }
             }
 
             try {
