@@ -1,50 +1,49 @@
 package com.huawei.jdbc;
 
-import java.util.HashMap;
+import java.util.Arrays;
 import java.util.Map;
 import java.util.Optional;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public enum ObjectType {
     FUNCTION("FUNCTION"),
     INDEX("INDEX"),
     PACKAGE("PACKAGE"),
-    PACKAGE_BODY("PACKAGE_BODY"),
+    PACKAGE_BODY("PACKAGE BODY"),
     SEQUENCE("SEQUENCE"),
     PROCEDURE("PROCEDURE"),
     TABLE("TABLE"),
     TRIGGER("TRIGGER"),
     TYPE("TYPE"),
-    TYPE_BODY("TYPE_BODY"),
+    TYPE_BODY("TYPE BODY"),
     VIEW("VIEW"),
-    OTHER("OTHER"),
-    TOTAL("TOTAL");
+    OTHER(""),
+    TOTAL("");
 
-    private static Map<String, ObjectType> map = new HashMap<>();
+    ObjectType(String outerTagName) {
+        this.outerTagName = outerTagName;
+    }
+
+    public String getOuterTagName() {
+        return outerTagName;
+    }
+
+    private final String outerTagName;
+
+    private static final Map<String, ObjectType> map;
 
     static {
-        map.put("FUNCTION", FUNCTION);
-        map.put("INDEX", INDEX);
-        map.put("PACKAGE", PACKAGE);
-        map.put("PACKAGE BODY", PACKAGE_BODY);
-        map.put("SEQUENCE", SEQUENCE);
-        map.put("PROCEDURE", PROCEDURE);
-        map.put("TABLE", TABLE);
-        map.put("TRIGGER", TRIGGER);
-        map.put("TYPE", TYPE);
-        map.put("TYPE BODY", TYPE_BODY);
-        map.put("VIEW", VIEW);
+        map = Arrays.stream(ObjectType.values())
+                .limit(ObjectType.values().length - 2)
+                .collect(Collectors.toMap(ObjectType::getOuterTagName, Function.identity()));
     }
 
     public static ObjectType getObjectType(String name) {
         return Optional.ofNullable(map.get(name)).orElse(OTHER);
     }
-    private String name;
-
-    ObjectType(String name) {
-        this.name = name;
-    }
 
     public String getName() {
-        return this.name;
+        return this.name();
     }
 }

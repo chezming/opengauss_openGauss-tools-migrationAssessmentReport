@@ -30,4 +30,4 @@ chmod +x $CUR_PATH/bin/* -R 2>/dev/null
 if [ ! "$debug_port"X == X ]; then
   JAVA_DEBUG="-agentlib:jdwp=transport=dt_socket,server=y,suspend=$suspend,address=$debug_port"
 fi
-cd $CUR_PATH && java -classpath $CLASS_PATH $JAVA_DEBUG com.huawei.payroll.ReactAndSpringDataRestApplication
+cd $CUR_PATH && java -classpath $CLASS_PATH $JAVA_DEBUG com.huawei.payroll.ReportApplication

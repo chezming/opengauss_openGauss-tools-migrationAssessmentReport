@@ -7,7 +7,7 @@ import java.util.Optional;
 public class DefinitionPathCache {
     public static final DefinitionPathCache INSTANCE = new DefinitionPathCache();
 
-    private Map<String, String> map = new HashMap<>();
+    private final Map<String, String> map = new HashMap<>();
 
     private DefinitionPathCache() {
     }
@@ -17,8 +17,6 @@ public class DefinitionPathCache {
     }
 
     public Optional<String> getDDLPath(String id) {
-
-
         return Optional.ofNullable(this.map.get(id));
     }
 }

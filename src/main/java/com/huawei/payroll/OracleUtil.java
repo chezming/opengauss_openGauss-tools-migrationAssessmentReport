@@ -1,5 +1,11 @@
 package com.huawei.payroll;
 
+import com.huawei.jdbc.ObjectType;
+import com.huawei.jdbc.pojo.DatabaseObject;
+import com.huawei.json.JsonUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -10,28 +16,25 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.huawei.jdbc.ObjectType;
-import com.huawei.jdbc.pojo.DatabaseObject;
-import com.huawei.json.JsonUtil;
-
 import static com.huawei.jdbc.pojo.PathConst.DDL_DIR;
 import static com.huawei.jdbc.pojo.PathConst.OBJECT_DETAILS;
 
 public class OracleUtil {
+    private static final Logger LOGGER = LoggerFactory.getLogger(AssessmentCache.class);
 
-    private static Pattern pattern = Pattern.compile("^([0-9]+)\\.sql");
+    private static final Pattern pattern = Pattern.compile("^([0-9]+)\\.sql");
 
     public static Map<String, String> initObjectDDL() {
         Map<String, String> map = new HashMap<>();
         File[] files = new File(DDL_DIR).listFiles();
         if (files == null) {
-            System.out.println(DDL_DIR + " path is empty!");
+            LOGGER.error("{}  path is empty!", DDL_DIR);
             return Collections.emptyMap();
         }
         for (File file : files) {
             File[] subFiles = file.listFiles();
             if (subFiles == null) {
-                System.out.println(file.getAbsolutePath() + " path is empty!");
+                LOGGER.error("{}  path is empty!", file.getAbsolutePath());
                 return Collections.emptyMap();
             }
             for (File ddlFile : subFiles) {
@@ -60,13 +63,13 @@ public class OracleUtil {
     private static String readObjectDDL(File file) {
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
             StringBuilder stringBuilder = new StringBuilder();
-            String line = null;
+            String line;
             while ((line = bufferedReader.readLine()) != null) {
                 stringBuilder.append(line).append('\n');
             }
             return stringBuilder.toString();
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.error(e.getMessage());
         }
         return "";
     }

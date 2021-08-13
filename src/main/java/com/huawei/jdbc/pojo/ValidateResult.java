@@ -27,19 +27,6 @@ public class ValidateResult {
 
     private String extensionError;
 
-    public ValidateResult(String id, String sql, String sqlType, DatabaseType sourceDatabaseType, DatabaseType targetDatabaseType,
-            Map.Entry<Boolean, String> target, Map.Entry<Boolean, String> extension) {
-        this.id = id;
-        this.sql = sql;
-        this.sqlType = sqlType;
-        this.sourceDatabaseType = sourceDatabaseType;
-        this.targetDatabaseType = targetDatabaseType;
-        this.target = target.getKey();
-        this.targetError = target.getValue();
-        this.extension = extension.getKey();
-        this.extensionError = extension.getValue();
-    }
-
     public String getId() {
         return id;
     }
@@ -78,5 +65,50 @@ public class ValidateResult {
                 + ", sourceDatabaseType=" + sourceDatabaseType + ", targetDatabaseType=" + targetDatabaseType
                 + ", target=" + target + ", targetError='" + targetError + '\'' + ", extension=" + extension
                 + ", extensionError='" + extensionError + '\'' + '}';
+    }
+
+    public ValidateResult setId(String id) {
+        this.id = id;
+        return this;
+    }
+
+    public ValidateResult setSql(String sql) {
+        this.sql = sql;
+        return this;
+    }
+
+    public ValidateResult setSqlType(String sqlType) {
+        this.sqlType = sqlType;
+        return this;
+    }
+
+    public ValidateResult setSourceDatabaseType(DatabaseType sourceDatabaseType) {
+        this.sourceDatabaseType = sourceDatabaseType;
+        return this;
+    }
+
+    public ValidateResult setTargetDatabaseType(DatabaseType targetDatabaseType) {
+        this.targetDatabaseType = targetDatabaseType;
+        return this;
+    }
+
+    public ValidateResult setTarget(boolean target) {
+        this.target = target;
+        return this;
+    }
+
+    public ValidateResult setTargetError(String targetError) {
+        this.targetError = targetError;
+        return this;
+    }
+
+    public ValidateResult setExtension(boolean extension) {
+        this.extension = extension;
+        return this;
+    }
+
+    public ValidateResult setExtensionError(String extensionError) {
+        this.extensionError = extensionError;
+        return this;
     }
 }

@@ -1,22 +1,18 @@
 package com.huawei.json;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.concurrent.Callable;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.stream.JsonReader;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.*;
+import java.util.*;
+import java.util.concurrent.Callable;
 
 public class JsonUtil {
+    private static final Logger LOGGER = LoggerFactory.getLogger(JsonUtil.class);
+
     private static <T> List<T> jsonReaderReadList(FileReader reader, Class<T> objectClass) throws IOException {
         List<T> result = new ArrayList<>();
         JsonReader jsonReader = new JsonReader(reader);
@@ -47,7 +43,7 @@ public class JsonUtil {
         try (FileWriter fileWriter = new FileWriter(path)) {
             fileWriter.write(json);
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.error(e.getMessage());
         }
     }
 
@@ -55,11 +51,9 @@ public class JsonUtil {
         try (FileReader reader = new FileReader(path)) {
             return Optional.of(jsonReaderReadList(reader, objectClass));
         } catch (FileNotFoundException e) {
-            System.out.println("file not found");
-            e.printStackTrace();
+            LOGGER.error("file not found :{}", e.getMessage());
         } catch (IOException e) {
-            System.out.println("io exception");
-            e.printStackTrace();
+            LOGGER.error("io exception: {}", e.getMessage());
         }
         return Optional.empty();
     }
@@ -71,7 +65,7 @@ public class JsonUtil {
                 jsonSave(call, path);
                 return Optional.of(call);
             } catch (Exception e) {
-                e.printStackTrace();
+                LOGGER.error(e.getMessage());
                 return Optional.empty();
             }
         }
@@ -83,11 +77,9 @@ public class JsonUtil {
         try (FileReader reader = new FileReader(path)) {
             return Optional.of(jsonReaderReadMap(reader, objectClass));
         } catch (FileNotFoundException e) {
-            System.out.println("file not found");
-            e.printStackTrace();
+            LOGGER.error("file not found :{}", e.getMessage());
         } catch (IOException e) {
-            System.out.println("io exception");
-            e.printStackTrace();
+            LOGGER.error("io exception: {}", e.getMessage());
         }
         return Optional.empty();
     }
@@ -100,7 +92,7 @@ public class JsonUtil {
                 jsonSave(call, path);
                 return Optional.ofNullable(call);
             } catch (Exception e) {
-                e.printStackTrace();
+                LOGGER.error(e.getMessage());
                 return Optional.empty();
             }
         }

@@ -51,7 +51,7 @@ public class ExecUtil {
                             }
                         }
                     } catch (IOException e) {
-                        e.printStackTrace();
+                        LOGGER.error(e.getMessage());
                     }
                 }
             }
@@ -77,12 +77,12 @@ public class ExecUtil {
             DatabaseType databaseType, String sql) {
         String command = commandSupplier.get();
         StringBuilder failedResult = new StringBuilder();
-        boolean success = false;
+        boolean success;
         try {
             Process exec = Runtime.getRuntime().exec(new String[] {command, sql});
             exec.waitFor();
             success = true;
-            String line = null;
+            String line;
             try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(exec.getInputStream()))) {
                 while ((line = bufferedReader.readLine()) != null) {
                     failedResult.append(line).append('\n');
@@ -97,7 +97,7 @@ public class ExecUtil {
             }
 
         } catch (IOException | InterruptedException e) {
-            e.printStackTrace();
+            LOGGER.error(e.getMessage());
             success = false;
         }
         if (!success) {
@@ -105,7 +105,7 @@ public class ExecUtil {
                     sql.trim().replace('\n', ' ').replace('\t', ' ').replaceAll(" +", " "),
                     failedResult.toString().trim().replace('\n', ' '));
         }
-        return new Pair<Boolean, String>(success, failedResult.toString().trim());
+        return new Pair<>(success, failedResult.toString().trim());
     }
 
     public static Map.Entry<Boolean, String> sqlConvert(String sql, DatabaseType databaseType) {
@@ -119,7 +119,7 @@ public class ExecUtil {
             if (result != 0) {
                 success = false;
             }
-            String line = null;
+            String line;
             try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(exec.getInputStream()))) {
                 while ((line = bufferedReader.readLine()) != null) {
                     failedResult.append(line).append('\n');
@@ -132,7 +132,7 @@ public class ExecUtil {
             }
 
         } catch (IOException | InterruptedException e) {
-            e.printStackTrace();
+            LOGGER.error(e.getMessage());
             success = false;
         }
         if (!success) {
@@ -140,7 +140,7 @@ public class ExecUtil {
                     sql.trim().replace('\n', ' ').replace('\t', ' ').replaceAll(" +", " "),
                     failedResult.toString().trim().replace('\n', ' '));
         }
-        return new Pair<Boolean, String>(success, failedResult.toString().trim());
+        return new Pair<>(success, failedResult.toString().trim());
     }
 
     public static String getSystemVersion() {
