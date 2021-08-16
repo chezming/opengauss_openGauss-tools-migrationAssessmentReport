@@ -1,3 +1,6 @@
+/*
+ * Copyright (c) 2021 Huawei Technologies Co.,Ltd.
+ */
 package com.huawei.util;
 
 import org.slf4j.Logger;
@@ -8,6 +11,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Optional;
 
+/**
+ * File utility
+ */
 public class FileUtil {
     private static final Logger LOGGER = LoggerFactory.getLogger(FileUtil.class);
 
@@ -19,6 +25,5 @@ public class FileUtil {
             return Optional.of(e.getMessage());
         }
         return Optional.empty();
-
     }
 }

@@ -1,5 +1,11 @@
+/*
+ * Copyright (c) 2021 Huawei Technologies Co.,Ltd.
+ */
 package com.huawei.jdbc.pojo;
 
+/**
+ * Data files statistics, undo files, redo files, data files, logs, etc...
+ */
 public class DataFiles {
     private String fileName;
 

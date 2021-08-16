@@ -28,7 +28,6 @@ class DBAObjectTable extends React.Component {
             dataIndex: 'objectName',
             key: 'objectName',
             sorter: (a, b) => a.objectName.localeCompare(b.objectName),
-
         },
         {
             title: 'TargetDatabase',
@@ -43,10 +42,8 @@ class DBAObjectTable extends React.Component {
                     }
                 } else {
                     return (<div><font color='red'>false</font></div>)
-
                 }
             }
-
         },
         {
             title: 'ExtensionDatabase',
@@ -63,7 +60,6 @@ class DBAObjectTable extends React.Component {
                     return (<div><font color='red'>false</font></div>)
                 }
             }
-
         },
         {
             title: 'Type',
@@ -103,7 +99,6 @@ class DBAObjectTable extends React.Component {
         "bottom": 'bottomRight'
     };
 
-
     componentDidMount() {
         client({method: 'GET', path: '/summary/objects'}).done(response => {
             const data = [];
@@ -124,7 +119,6 @@ class DBAObjectTable extends React.Component {
             this.setState({databaseObjects: data});
         });
     }
-
 
     render() {
         return (
@@ -220,7 +214,6 @@ class ModifyModel extends React.Component {
                 }
             });
         }
-
     };
 
     error(message) {
@@ -230,7 +223,6 @@ class ModifyModel extends React.Component {
             width: 800
         });
     }
-
 
     info(message) {
         Modal.info({
@@ -263,7 +255,6 @@ class ModifyModel extends React.Component {
     }
 }
 
-
 class ShowButton extends React.Component {
     constructor(props) {
         super(props);
@@ -283,11 +274,9 @@ class ShowButton extends React.Component {
         this.setState({visible: true});
     };
 
-
     handleClose = (value) => {
         this.setState({visible: false});
     };
-
 
     render() {
         const {refresh} = this.props;

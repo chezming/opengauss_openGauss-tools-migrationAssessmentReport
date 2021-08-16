@@ -1,3 +1,6 @@
+/*
+ * Copyright (c) 2021 Huawei Technologies Co.,Ltd.
+ */
 package com.huawei.json;
 
 import com.google.gson.Gson;
@@ -10,6 +13,9 @@ import java.io.*;
 import java.util.*;
 import java.util.concurrent.Callable;
 
+/**
+ * Some json utility interface
+ */
 public class JsonUtil {
     private static final Logger LOGGER = LoggerFactory.getLogger(JsonUtil.class);
 

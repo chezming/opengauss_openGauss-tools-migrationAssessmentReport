@@ -1,6 +1,5 @@
 import React from 'react';
 import 'antd/dist/antd.css';
-import './index.css';
 import {Collapse} from 'antd';
 import SQLShow from "../sqlformatter";
 

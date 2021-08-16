@@ -1,3 +1,6 @@
+/*
+ * Copyright (c) 2021 Huawei Technologies Co.,Ltd.
+ */
 package com.huawei.payroll;
 
 import java.util.ArrayList;
@@ -28,6 +31,9 @@ import com.huawei.jdbc.pojo.ValidateResult;
 import com.huawei.json.JsonUtil;
 import com.huawei.shell.ExecUtil;
 
+/**
+ * The assessment results
+ */
 public class AssessmentCache {
     private static final Logger LOGGER = LoggerFactory.getLogger(AssessmentCache.class);
 
@@ -100,7 +106,7 @@ public class AssessmentCache {
         AssessmentCache.validateResults.put(ddlId, validate(ddlId));
     }
 
-    static void loadStatistic(){
+    static void loadStatistic() {
         LOGGER.info("start init AssessmentCache.tableStatistics");
         final Optional<Map<String, TableStatistic>> stringTableStatisticMap = JsonUtil.jsonLoadMap(
                 JsonPathType.STATISTIC.getPath(), TableStatistic.class);
@@ -147,7 +153,6 @@ public class AssessmentCache {
                 "init AssessmentCache.databaseObjectDefinitions success! AssessmentCache.databaseObjectDefinitions.size()="
                         + AssessmentCache.databaseObjectDefinitions.size());
         AssessmentCache.atomicInteger.addAndGet(1);
-
     }
 
     private static void loadValidateResult() {

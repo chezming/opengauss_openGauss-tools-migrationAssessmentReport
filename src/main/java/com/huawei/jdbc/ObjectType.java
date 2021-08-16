@@ -1,3 +1,6 @@
+/*
+ * Copyright (c) 2021 Huawei Technologies Co.,Ltd.
+ */
 package com.huawei.jdbc;
 
 import java.util.Arrays;
@@ -6,6 +9,9 @@ import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+/**
+ * Object types in current database
+ */
 public enum ObjectType {
     FUNCTION("FUNCTION"),
     INDEX("INDEX"),

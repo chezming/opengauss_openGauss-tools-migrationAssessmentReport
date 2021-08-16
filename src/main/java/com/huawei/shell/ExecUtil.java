@@ -1,15 +1,13 @@
+/*
+ * Copyright (c) 2021 Huawei Technologies Co.,Ltd.
+ */
 package com.huawei.shell;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.concurrent.Callable;
-import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 import org.slf4j.Logger;
@@ -17,16 +15,20 @@ import org.slf4j.LoggerFactory;
 
 import com.huawei.jdbc.DatabaseType;
 import com.huawei.jdbc.pojo.Pair;
-import com.huawei.payroll.AssessmentCache;
 
 import static com.huawei.jdbc.pojo.PathConst.BINARY_DIR;
 
+/**
+ * Get information by shell command
+ */
 public class ExecUtil {
     private static final Logger LOGGER = LoggerFactory.getLogger(ExecUtil.class);
 
     private static String SYSTEM_VERSION = null;
 
     private static String MACHINE_ARCHITECTURE = null;
+
+    private static final char LINE_SEPARATOR = '\n';
 
     public static String getMachineArchitecture() {
         String systemVersion = getSystemVersion();
@@ -37,7 +39,7 @@ public class ExecUtil {
             synchronized (ExecUtil.class) {
                 if (MACHINE_ARCHITECTURE == null) {
                     try {
-                        // 操作系统判断
+                        // check OS type
                         Process arch = Runtime.getRuntime().exec("arch");
                         try (BufferedReader bufferedReader = new BufferedReader(
                                 new InputStreamReader(arch.getInputStream()))) {
@@ -85,25 +87,24 @@ public class ExecUtil {
             String line;
             try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(exec.getInputStream()))) {
                 while ((line = bufferedReader.readLine()) != null) {
-                    failedResult.append(line).append('\n');
+                    failedResult.append(line).append(LINE_SEPARATOR);
                     success = false;
                 }
             }
             try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(exec.getErrorStream()))) {
                 while ((line = bufferedReader.readLine()) != null) {
-                    failedResult.append(line).append('\n');
+                    failedResult.append(line).append(LINE_SEPARATOR);
                     success = false;
                 }
             }
-
         } catch (IOException | InterruptedException e) {
             LOGGER.error(e.getMessage());
             success = false;
         }
         if (!success) {
             LOGGER.error("validate failed, databaseType: {}, sql: \"{}\", error reason: \"{}\"", databaseType.getStr(),
-                    sql.trim().replace('\n', ' ').replace('\t', ' ').replaceAll(" +", " "),
-                    failedResult.toString().trim().replace('\n', ' '));
+                    sql.trim().replace(LINE_SEPARATOR, ' ').replace('\t', ' ').replaceAll(" +", " "),
+                    failedResult.toString().trim().replace(LINE_SEPARATOR, ' '));
         }
         return new Pair<>(success, failedResult.toString().trim());
     }
@@ -122,23 +123,22 @@ public class ExecUtil {
             String line;
             try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(exec.getInputStream()))) {
                 while ((line = bufferedReader.readLine()) != null) {
-                    failedResult.append(line).append('\n');
+                    failedResult.append(line).append(LINE_SEPARATOR);
                 }
             }
             try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(exec.getErrorStream()))) {
                 while ((line = bufferedReader.readLine()) != null) {
-                    failedResult.append(line).append('\n');
+                    failedResult.append(line).append(LINE_SEPARATOR);
                 }
             }
-
         } catch (IOException | InterruptedException e) {
             LOGGER.error(e.getMessage());
             success = false;
         }
         if (!success) {
             LOGGER.error("validate failed, databaseType: {}, sql: \"{}\", error reason: \"{}\"", databaseType.getStr(),
-                    sql.trim().replace('\n', ' ').replace('\t', ' ').replaceAll(" +", " "),
-                    failedResult.toString().trim().replace('\n', ' '));
+                    sql.trim().replace(LINE_SEPARATOR, ' ').replace('\t', ' ').replaceAll(" +", " "),
+                    failedResult.toString().trim().replace(LINE_SEPARATOR, ' '));
         }
         return new Pair<>(success, failedResult.toString().trim());
     }
@@ -154,4 +154,3 @@ public class ExecUtil {
         return SYSTEM_VERSION;
     }
 }
-

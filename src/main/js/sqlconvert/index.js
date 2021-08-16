@@ -1,6 +1,5 @@
 import React from 'react';
 import 'antd/dist/antd.css';
-import './index.css';
 import {Button, Col, Input, Modal, Row} from 'antd';
 import Title from "antd/lib/typography/Title";
 import {format} from 'sql-formatter'
@@ -38,7 +37,6 @@ class SQLConvert extends React.Component {
                 this.setState({result: response.entity[false]});
             } else {
                 this.setState({result: format(response.entity[true])});
-
             }
         });
     }

@@ -1,5 +1,11 @@
+/*
+ * Copyright (c) 2021 Huawei Technologies Co.,Ltd.
+ */
 package com.huawei.jdbc.pojo;
 
+/**
+ * Detail statistic of a table
+ */
 public class TableStatistic {
     private String type;
 

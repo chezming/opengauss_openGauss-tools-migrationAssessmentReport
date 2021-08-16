@@ -1,23 +1,29 @@
+/*
+ * Copyright (c) 2021 Huawei Technologies Co.,Ltd.
+ */
 package com.huawei.jdbc.pojo;
 
 import java.util.Date;
 
+/**
+ * Objects info in the database.
+ */
 public class DBAObject {
     private String owner;
 
-    private String object_name;
+    private String objectName;
 
-    private String subobject_name;
+    private String subObjectName;
 
-    private long object_id;
+    private long objectId;
 
-    private long data_object_id;
+    private long dataObjectId;
 
-    private String object_type;
+    private String objectType;
 
     private Date created;
 
-    private Date last_ddl_time;
+    private Date lastDdlTime;
 
     private String timestamp;
 
@@ -31,29 +37,29 @@ public class DBAObject {
 
     private long namespace;
 
-    private String edition_name;
+    private String editionName;
 
     private String sharing;
 
     private String editionable;
 
-    private String oracle_maintained;
+    private String oracleMaintained;
 
     private String application;
 
-    private String default_collation;
+    private String defaultCollation;
 
     private String duplicated;
 
     private String sharded;
 
-    private long created_appid;
+    private long createdAppid;
 
-    private long created_vsnid;
+    private long createdVsnid;
 
-    private long modified_appid;
+    private long modifiedAppid;
 
-    private long modified_vsnid;
+    private long modifiedVsnid;
 
     public String getOwner() {
         return owner;
@@ -64,48 +70,48 @@ public class DBAObject {
         return this;
     }
 
-    public String getObject_name() {
-        return object_name;
+    public String getObjectName() {
+        return objectName;
     }
 
-    public DBAObject setObject_name(String object_name) {
-        this.object_name = object_name;
+    public DBAObject setObjectName(String objectName) {
+        this.objectName = objectName;
         return this;
     }
 
-    public String getSubobject_name() {
-        return subobject_name;
+    public String getSubObjectName() {
+        return subObjectName;
     }
 
-    public DBAObject setSubobject_name(String subobject_name) {
-        this.subobject_name = subobject_name;
+    public DBAObject setSubObjectName(String subObjectName) {
+        this.subObjectName = subObjectName;
         return this;
     }
 
-    public long getObject_id() {
-        return object_id;
+    public long getObjectId() {
+        return objectId;
     }
 
-    public DBAObject setObject_id(long object_id) {
-        this.object_id = object_id;
+    public DBAObject setObjectId(long objectId) {
+        this.objectId = objectId;
         return this;
     }
 
-    public long getData_object_id() {
-        return data_object_id;
+    public long getDataObjectId() {
+        return dataObjectId;
     }
 
-    public DBAObject setData_object_id(long data_object_id) {
-        this.data_object_id = data_object_id;
+    public DBAObject setDataObjectId(long dataObjectId) {
+        this.dataObjectId = dataObjectId;
         return this;
     }
 
-    public String getObject_type() {
-        return object_type;
+    public String getObjectType() {
+        return objectType;
     }
 
-    public DBAObject setObject_type(String object_type) {
-        this.object_type = object_type;
+    public DBAObject setObjectType(String objectType) {
+        this.objectType = objectType;
         return this;
     }
 
@@ -118,12 +124,12 @@ public class DBAObject {
         return this;
     }
 
-    public Date getLast_ddl_time() {
-        return last_ddl_time;
+    public Date getLastDdlTime() {
+        return lastDdlTime;
     }
 
-    public DBAObject setLast_ddl_time(Date last_ddl_time) {
-        this.last_ddl_time = last_ddl_time;
+    public DBAObject setLastDdlTime(Date lastDdlTime) {
+        this.lastDdlTime = lastDdlTime;
         return this;
     }
 
@@ -181,12 +187,12 @@ public class DBAObject {
         return this;
     }
 
-    public String getEdition_name() {
-        return edition_name;
+    public String getEditionName() {
+        return editionName;
     }
 
-    public DBAObject setEdition_name(String edition_name) {
-        this.edition_name = edition_name;
+    public DBAObject setEditionName(String editionName) {
+        this.editionName = editionName;
         return this;
     }
 
@@ -208,12 +214,12 @@ public class DBAObject {
         return this;
     }
 
-    public String getOracle_maintained() {
-        return oracle_maintained;
+    public String getOracleMaintained() {
+        return oracleMaintained;
     }
 
-    public DBAObject setOracle_maintained(String oracle_maintained) {
-        this.oracle_maintained = oracle_maintained;
+    public DBAObject setOracleMaintained(String oracleMaintained) {
+        this.oracleMaintained = oracleMaintained;
         return this;
     }
 
@@ -226,12 +232,12 @@ public class DBAObject {
         return this;
     }
 
-    public String getDefault_collation() {
-        return default_collation;
+    public String getDefaultCollation() {
+        return defaultCollation;
     }
 
-    public DBAObject setDefault_collation(String default_collation) {
-        this.default_collation = default_collation;
+    public DBAObject setDefaultCollation(String defaultCollation) {
+        this.defaultCollation = defaultCollation;
         return this;
     }
 
@@ -253,39 +259,39 @@ public class DBAObject {
         return this;
     }
 
-    public long getCreated_appid() {
-        return created_appid;
+    public long getCreatedAppid() {
+        return createdAppid;
     }
 
-    public DBAObject setCreated_appid(long created_appid) {
-        this.created_appid = created_appid;
+    public DBAObject setCreatedAppid(long createdAppid) {
+        this.createdAppid = createdAppid;
         return this;
     }
 
-    public long getCreated_vsnid() {
-        return created_vsnid;
+    public long getCreatedVsnid() {
+        return createdVsnid;
     }
 
-    public DBAObject setCreated_vsnid(long created_vsnid) {
-        this.created_vsnid = created_vsnid;
+    public DBAObject setCreatedVsnid(long createdVsnid) {
+        this.createdVsnid = createdVsnid;
         return this;
     }
 
-    public long getModified_appid() {
-        return modified_appid;
+    public long getModifiedAppid() {
+        return modifiedAppid;
     }
 
-    public DBAObject setModified_appid(long modified_appid) {
-        this.modified_appid = modified_appid;
+    public DBAObject setModifiedAppid(long modifiedAppid) {
+        this.modifiedAppid = modifiedAppid;
         return this;
     }
 
-    public long getModified_vsnid() {
-        return modified_vsnid;
+    public long getModifiedVsnid() {
+        return modifiedVsnid;
     }
 
-    public DBAObject setModified_vsnid(long modified_vsnid) {
-        this.modified_vsnid = modified_vsnid;
+    public DBAObject setModifiedVsnid(long modifiedVsnid) {
+        this.modifiedVsnid = modifiedVsnid;
         return this;
     }
 }

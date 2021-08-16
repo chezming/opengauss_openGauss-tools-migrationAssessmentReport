@@ -1,3 +1,6 @@
+/*
+ * Copyright (c) 2021 Huawei Technologies Co.,Ltd.
+ */
 package com.huawei.rest;
 
 import java.util.Map;
@@ -14,6 +17,9 @@ import com.huawei.payroll.DefinitionPathCache;
 import com.huawei.shell.ExecUtil;
 import com.huawei.util.FileUtil;
 
+/**
+ * Rest controller of the sql page
+ */
 @RestController
 @RequestMapping("/sql")
 public class SQLRest {

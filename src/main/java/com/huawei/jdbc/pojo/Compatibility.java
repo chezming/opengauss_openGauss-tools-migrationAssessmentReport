@@ -1,8 +1,13 @@
+/*
+ * Copyright (c) 2021 Huawei Technologies Co.,Ltd.
+ */
 package com.huawei.jdbc.pojo;
-
 
 import com.huawei.jdbc.ObjectType;
 
+/**
+ * The compatibility statistics between the original database and openGauss
+ */
 public class Compatibility {
     private ObjectType type;
 
@@ -19,7 +24,6 @@ public class Compatibility {
     public Compatibility(ObjectType type) {
         this.type = type;
     }
-
 
     public ObjectType getType() {
         return type;

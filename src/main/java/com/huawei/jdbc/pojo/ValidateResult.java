@@ -1,17 +1,19 @@
+/*
+ * Copyright (c) 2021 Huawei Technologies Co.,Ltd.
+ */
 package com.huawei.jdbc.pojo;
 
 import java.util.Map;
 
 import com.huawei.jdbc.DatabaseType;
 
+/**
+ * The validate result of a SQL
+ */
 public class ValidateResult {
     private String id;
 
     private String sql;
-
-    public String getSqlType() {
-        return sqlType;
-    }
 
     private String sqlType;
 
@@ -61,10 +63,9 @@ public class ValidateResult {
 
     @Override
     public String toString() {
-        return "ValidateResult{" + "id='" + id + '\'' + ", sql='" + sql + '\'' + ", sqlType='" + sqlType + '\''
-                + ", sourceDatabaseType=" + sourceDatabaseType + ", targetDatabaseType=" + targetDatabaseType
-                + ", target=" + target + ", targetError='" + targetError + '\'' + ", extension=" + extension
-                + ", extensionError='" + extensionError + '\'' + '}';
+        return String.format("ValidateResult{id='%s', sql='%s', sqlType='%s', sourceDatabaseType='%s', " +
+            "targetDatabaseType='%s', target='%s', targetError='%s', extension='%s', extensionError='%s'}",
+            id, sql, sqlType, sourceDatabaseType, targetDatabaseType, target, targetError, extension, extensionError);
     }
 
     public ValidateResult setId(String id) {
@@ -75,6 +76,10 @@ public class ValidateResult {
     public ValidateResult setSql(String sql) {
         this.sql = sql;
         return this;
+    }
+
+    public String getSqlType() {
+        return sqlType;
     }
 
     public ValidateResult setSqlType(String sqlType) {

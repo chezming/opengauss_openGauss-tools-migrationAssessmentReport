@@ -1,5 +1,11 @@
+/*
+ * Copyright (c) 2021 Huawei Technologies Co.,Ltd.
+ */
 package com.huawei.jdbc.pojo;
 
+/**
+ * Database version.
+ */
 public class DatabaseVersion {
     private String product;
     private String version;

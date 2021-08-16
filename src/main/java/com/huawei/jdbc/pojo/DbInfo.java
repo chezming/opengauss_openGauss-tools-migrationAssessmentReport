@@ -1,5 +1,11 @@
+/*
+ * Copyright (c) 2021 Huawei Technologies Co.,Ltd.
+ */
 package com.huawei.jdbc.pojo;
 
+/**
+ * Database info.
+ */
 public class DbInfo {
     private Long dbId;
 
@@ -33,5 +39,4 @@ public class DbInfo {
         this.instanceName = instanceName;
         return this;
     }
-
 }

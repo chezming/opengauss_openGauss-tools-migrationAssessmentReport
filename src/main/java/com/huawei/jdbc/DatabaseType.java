@@ -1,5 +1,11 @@
+/*
+ * Copyright (c) 2021 Huawei Technologies Co.,Ltd.
+ */
 package com.huawei.jdbc;
 
+/**
+ * Database type supported by current tool
+ */
 public enum DatabaseType {
     OPENGAUSS("opengauss"),
 

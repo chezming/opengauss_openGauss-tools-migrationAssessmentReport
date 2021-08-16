@@ -1,3 +1,6 @@
+/*
+ * Copyright (c) 2021 Huawei Technologies Co.,Ltd.
+ */
 package com.huawei.rest;
 
 import java.util.ArrayList;
@@ -22,6 +25,9 @@ import com.huawei.jdbc.pojo.TableStatistic;
 import com.huawei.jdbc.pojo.ValidateResult;
 import com.huawei.payroll.AssessmentCache;
 
+/**
+ * Rest controller of the summary page
+ */
 @RestController
 @RequestMapping("/summary")
 public class IndexPageRest {
@@ -63,7 +69,6 @@ public class IndexPageRest {
             sqlDetail.setSchema(databaseObject.getSchema());
             return sqlDetail;
         }).collect(Collectors.toList());
-
     }
 
     @RequestMapping(value = "object/validation")

@@ -1,3 +1,6 @@
+/*
+ * Copyright (c) 2021 Huawei Technologies Co.,Ltd.
+ */
 package com.huawei.rest;
 
 import com.huawei.jdbc.mapper.SchemaMapper;
@@ -24,6 +27,9 @@ import java.util.regex.Pattern;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 
+/**
+ * Rest controller of the home page
+ */
 @RestController
 @RequestMapping("/home")
 public class HomePageRest {
@@ -88,9 +94,9 @@ public class HomePageRest {
             systemDetail.setDeployStructure("RAC");
         } else {
             if (dbInfo.getSwitchoverStatus().equalsIgnoreCase("NOT ALLOWED")) {
-                systemDetail.setDeployStructure("单机");
+                systemDetail.setDeployStructure("SINGLE");
             } else {
-                systemDetail.setDeployStructure("主备");
+                systemDetail.setDeployStructure("PRIMARY/STANDBY");
             }
         }
 
@@ -98,8 +104,8 @@ public class HomePageRest {
         systemDetail.setDatabaseName(databaseVersion.getProduct());
 
         for (OSState osState : osStates) {
-            String statName = osState.getSTAT_NAME();
-            ParseOsState.call(statName).ifPresent(consumer -> consumer.accept(systemDetail, osState.getVALUE()));
+            String statName = osState.getStatName();
+            ParseOsState.call(statName).ifPresent(consumer -> consumer.accept(systemDetail, osState.getValue()));
         }
 
         final long idleTime = Long.parseLong(systemDetail.getIdleTime());

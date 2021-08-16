@@ -1,14 +1,22 @@
+/*
+ * Copyright (c) 2021 Huawei Technologies Co.,Ltd.
+ */
 package com.huawei.jdbc.pojo;
 
 import java.util.List;
 
 import com.huawei.jdbc.pojo.DataFiles;
 
+/**
+ * All information that need to be represent in the index page
+ */
 public class SystemDetail {
     // database details
+    private String port;
     private String databaseName;
     private String databaseVersion;
     private String instanceName;
+    private String databaseSize;
 
     // system version
     private String ip;
@@ -33,11 +41,6 @@ public class SystemDetail {
         this.port = port;
         return this;
     }
-
-    private String port;
-
-    // todo
-    private String databaseSize;
 
     public String getDatabaseName() {
         return databaseName;

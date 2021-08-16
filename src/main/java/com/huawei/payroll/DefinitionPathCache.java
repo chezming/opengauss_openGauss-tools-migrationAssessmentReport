@@ -1,9 +1,15 @@
+/*
+ * Copyright (c) 2021 Huawei Technologies Co.,Ltd.
+ */
 package com.huawei.payroll;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
+/**
+ * The original DDL statement
+ */
 public class DefinitionPathCache {
     public static final DefinitionPathCache INSTANCE = new DefinitionPathCache();
 

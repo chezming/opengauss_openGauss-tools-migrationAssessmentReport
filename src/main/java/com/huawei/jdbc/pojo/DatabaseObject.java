@@ -1,5 +1,11 @@
+/*
+ * Copyright (c) 2021 Huawei Technologies Co.,Ltd.
+ */
 package com.huawei.jdbc.pojo;
 
+/**
+ * Database objects, index, tables, views, sequences, roles, users, etc...
+ */
 public class DatabaseObject {
     private long id;
 

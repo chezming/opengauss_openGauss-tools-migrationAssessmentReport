@@ -2,7 +2,6 @@ import React from 'react';
 import 'highlight.js/styles/vs.css';
 import 'antd/dist/antd.css';
 import Highlight from 'react-highlight';
-import './index.css';
 import {Input} from 'antd';
 
 const {TextArea} = Input;

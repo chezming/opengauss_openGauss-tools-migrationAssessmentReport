@@ -6,12 +6,11 @@ import TableStatisticTable from "../statistic";
 import DBAObjectTable from "../summary";
 
 const {Panel} = Collapse;
-const client = require('../client'); // <3>
+const client = require('../client');
 
 function callback(key) {
     console.log(key);
 }
-
 
 class MigrationReport extends React.Component {
     render() {

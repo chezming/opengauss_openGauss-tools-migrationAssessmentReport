@@ -9,7 +9,6 @@ const { Title, Paragraph, Text, Link } = Typography;
 class TableStatisticBar extends React.Component {
     constructor(props) {
         super(props);
-
     }
 
     options = {
@@ -109,7 +108,6 @@ class TableStatisticTable extends React.Component {
         "bottom": 'bottomRight'
     };
 
-
     componentDidMount() {
         client({method: 'GET', path: '/summary/object/tablestatistic'}).done(response => {
             const data = [];
@@ -138,7 +136,6 @@ class TableStatisticTable extends React.Component {
             this.setState({large: large});
         });
     }
-
 
     render() {
         return (

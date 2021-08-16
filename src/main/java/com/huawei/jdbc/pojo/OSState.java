@@ -1,69 +1,75 @@
+/*
+ * Copyright (c) 2021 Huawei Technologies Co.,Ltd.
+ */
 package com.huawei.jdbc.pojo;
 
+/**
+ * Operating system state.
+ */
 public class OSState {
-    private String OSSTAT_ID;
+    private String statId;
 
-    private String STAT_NAME;
+    private String statName;
 
-    private String COMMENTS;
+    private String comments;
 
-    private String CUMULATIVE;
+    private String cumulative;
 
-    private String CON_ID;
+    private String conId;
 
-    private String VALUE;
+    private String value;
 
-    public String getOSSTAT_ID() {
-        return OSSTAT_ID;
+    public String getStatId() {
+        return statId;
     }
 
-    public OSState setOSSTAT_ID(String OSSTAT_ID) {
-        this.OSSTAT_ID = OSSTAT_ID;
+    public OSState setStatId(String statId) {
+        this.statId = statId;
         return this;
     }
 
-    public String getSTAT_NAME() {
-        return STAT_NAME;
+    public String getStatName() {
+        return statName;
     }
 
-    public OSState setSTAT_NAME(String STAT_NAME) {
-        this.STAT_NAME = STAT_NAME;
+    public OSState setStatName(String statName) {
+        this.statName = statName;
         return this;
     }
 
-    public String getCOMMENTS() {
-        return COMMENTS;
+    public String getComments() {
+        return comments;
     }
 
-    public OSState setCOMMENTS(String COMMENTS) {
-        this.COMMENTS = COMMENTS;
+    public OSState setComments(String comments) {
+        this.comments = comments;
         return this;
     }
 
-    public String getCUMULATIVE() {
-        return CUMULATIVE;
+    public String getCumulative() {
+        return cumulative;
     }
 
-    public OSState setCUMULATIVE(String CUMULATIVE) {
-        this.CUMULATIVE = CUMULATIVE;
+    public OSState setCumulative(String cumulative) {
+        this.cumulative = cumulative;
         return this;
     }
 
-    public String getCON_ID() {
-        return CON_ID;
+    public String getConId() {
+        return conId;
     }
 
-    public OSState setCON_ID(String CON_ID) {
-        this.CON_ID = CON_ID;
+    public OSState setConId(String conId) {
+        this.conId = conId;
         return this;
     }
 
-    public String getVALUE() {
-        return VALUE;
+    public String getValue() {
+        return value;
     }
 
-    public OSState setVALUE(String VALUE) {
-        this.VALUE = VALUE;
+    public OSState setValue(String value) {
+        this.value = value;
         return this;
     }
 }

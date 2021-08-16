@@ -1,8 +1,16 @@
+/*
+ * Copyright (c) 2021 Huawei Technologies Co.,Ltd.
+ */
 package com.huawei.jdbc.pojo;
 
 import java.util.Map;
 
-public class Pair<T,R> implements Map.Entry<T,R>{
+/**
+ * A Key-value pair
+ * @param <T> key
+ * @param <R> value
+ */
+public class Pair<T, R> implements Map.Entry<T, R> {
     private T key;
 
     private R value;

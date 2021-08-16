@@ -2,9 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<!-- namespace:改mapper.xml映射文件的唯一标识并且必须和数据处理层的接口的路径相同-->
 <mapper namespace="com.huawei.jdbc.mapper.SchemaMapper">
-
     <select id="selectLineCount" resultType="com.huawei.jdbc.pojo.TableStatistic">
         select OWNER schema, 'TABLE', TABLE_NAME tableName, NUM_ROWS rowCount
         from ALL_TABLES
@@ -40,7 +38,8 @@
         Where SUBSTR(PRODUCT, 1, 6) = 'Oracle'
     </select>
     <select id="systemVersion" resultType="com.huawei.jdbc.pojo.OSState">
-        SELECT * FROM v$osstat
+        SELECT STAT_NAME statName, VALUE value, OSSTAT_ID statId, COMMENTS comments, CUMULATIVE cumulative,
+        CON_ID conId FROM v$osstat
     </select>
     <select id="ip" resultType="java.lang.String">
         SELECT utl_inaddr.get_host_address FROM dual
@@ -64,5 +63,4 @@
     <select id='generateAwr' resultType="java.lang.String">
         SELECT OUTPUT line FROM TABLE(DBMS_WORKLOAD_REPOSITORY.AWR_REPORT_HTML(#{dbid},#{instanceNum},#{bid},#{eid},0))
     </select>
-
 </mapper>

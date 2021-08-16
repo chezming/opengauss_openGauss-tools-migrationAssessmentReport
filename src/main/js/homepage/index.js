@@ -98,10 +98,6 @@ class HomePage extends React.Component {
                     <Descriptions.Item label="CPU使用率">{this.state.utilization}</Descriptions.Item>
                     <Descriptions.Item label="CPU负载">{this.state.load}</Descriptions.Item>
                 </Descriptions>
-                {/* <Descriptions title="表行数统计">
-                {}</Descriptions>
-                <CompatibilityChart/> */}
-
             </div>
         );
     }

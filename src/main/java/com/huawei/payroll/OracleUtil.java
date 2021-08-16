@@ -1,3 +1,6 @@
+/*
+ * Copyright (c) 2021 Huawei Technologies Co.,Ltd.
+ */
 package com.huawei.payroll;
 
 import com.huawei.jdbc.ObjectType;
@@ -19,26 +22,29 @@ import java.util.regex.Pattern;
 import static com.huawei.jdbc.pojo.PathConst.DDL_DIR;
 import static com.huawei.jdbc.pojo.PathConst.OBJECT_DETAILS;
 
+/**
+ * Oracle utility interface
+ */
 public class OracleUtil {
     private static final Logger LOGGER = LoggerFactory.getLogger(AssessmentCache.class);
 
-    private static final Pattern pattern = Pattern.compile("^([0-9]+)\\.sql");
+    private static final Pattern PATTERN = Pattern.compile("^([0-9]+)\\.sql");
 
     public static Map<String, String> initObjectDDL() {
         Map<String, String> map = new HashMap<>();
         File[] files = new File(DDL_DIR).listFiles();
         if (files == null) {
-            LOGGER.error("{}  path is empty!", DDL_DIR);
+            LOGGER.error("{} path is empty!", DDL_DIR);
             return Collections.emptyMap();
         }
         for (File file : files) {
             File[] subFiles = file.listFiles();
             if (subFiles == null) {
-                LOGGER.error("{}  path is empty!", file.getAbsolutePath());
+                LOGGER.error("{} path is empty!", file.getAbsolutePath());
                 return Collections.emptyMap();
             }
             for (File ddlFile : subFiles) {
-                Matcher matcher = pattern.matcher(ddlFile.getName());
+                Matcher matcher = PATTERN.matcher(ddlFile.getName());
                 if (matcher.matches()) {
                     final String id = matcher.group(1);
                     DefinitionPathCache.INSTANCE.putDDLPath(id, ddlFile.getAbsolutePath());
@@ -75,7 +81,7 @@ public class OracleUtil {
     }
 
     public static void refreshDDL(File file) {
-        final Matcher matcher = pattern.matcher(file.getName());
+        final Matcher matcher = PATTERN.matcher(file.getName());
         if (matcher.matches()) {
             final String ddlId = matcher.group(1);
             final String ddlSQL = readObjectDDL(file);

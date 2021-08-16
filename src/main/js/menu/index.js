@@ -33,24 +33,6 @@ class MigrationMenu extends React.Component {
                     }}>
                         <div className="logo" style={css}/>
                     </Link>
-
-                    {/*
-                    <Menu theme="dark" mode="horizontal" selectedKeys={this.state.select}>
-                        <Menu.Item key="1"><Link onClick={() => {
-                            this.state.select = ["1"]
-                        }}
-                                                 to="index">迁移评估报告</Link></Menu.Item>
-                        <Menu.Item key="2"><Link onClick={() => {
-                            this.state.select = ["2"]
-                        }}
-                                                 to="convert">语法转换工具</Link></Menu.Item>
-                        <Menu.Item key="3"><Link onClick={() => {
-                            this.state.select = ["3"]
-                        }}
-                                                 to="details">语句详情</Link></Menu.Item>
-                    </Menu>
-                    */}
-
                 </Header>
                 <Content className="site-layout" style={{padding: '0 50px', marginTop: 64}}>
                     <div className="site-layout-background" style={{padding: 24, minHeight: 380}}>
