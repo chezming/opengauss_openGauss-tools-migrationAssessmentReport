@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huawei.jdbc.mapper.SchemaMapper">
+    <select id="selectLineCount" resultType="com.huawei.jdbc.pojo.TableStatistic">
+        select OWNER schema, 'TABLE', TABLE_NAME tableName, NUM_ROWS rowCount
+        from ALL_TABLES
+    </select>
+
+    <select id="findByState" resultType="com.huawei.jdbc.pojo.DBAObject">
+        select *
+        from dba_objects
+        where rownum &lt; 10
+    </select>
+
+    <select id="selectDatabaseObject" resultType="com.huawei.jdbc.pojo.DatabaseObject">
+        Select object_id id, owner schema, object_name objectName, object_type type, '' definition, owner
+        from ALL_OBJECTS
+        where owner = 'XBIN'
+          and object_type not in ('JAVA CLASS', 'LOB')
+    </select>
+
+    <select id="selectDefinitionById" resultType="java.lang.String">
+        select DBMS_METADATA.GET_DDL(object_type, object_name, owner)
+        from ALL_OBJECTS
+        where object_id = #{id}
+    </select>
+
+    <select id="selectDistinctId" resultType="java.lang.Long">
+        select distinct object_id
+        from ALL_OBJECTS
+        where owner = 'XBIN'
+    </select>
+    <select id="databaseVersion" resultType="com.huawei.jdbc.pojo.DatabaseVersion">
+        Select PRODUCT product, VERSION version, VERSION_FULL fullVersion, STATUS status
+        FROM Product_component_version
+        Where SUBSTR(PRODUCT, 1, 6) = 'Oracle'
+    </select>
+    <select id="systemVersion" resultType="com.huawei.jdbc.pojo.OSState">
+        SELECT STAT_NAME statName, VALUE value, OSSTAT_ID statId, COMMENTS comments, CUMULATIVE cumulative,
+        CON_ID conId FROM v$osstat
+    </select>
+    <select id="ip" resultType="java.lang.String">
+        SELECT utl_inaddr.get_host_address FROM dual
+    </select>
+    <select id='dbaDataFiles' resultType="com.huawei.jdbc.pojo.DataFiles">
+        SELECT FILE_NAME fileName, TABLESPACE_NAME tablespaceName, BYTES bytes FROM DBA_DATA_FILES
+    </select>
+    <select id='racStatus' resultType="java.lang.String">
+        SELECT value FROM v$parameter where name = 'cluster_database'
+    </select>
+    <select id='getDbInfo' resultType="com.huawei.jdbc.pojo.DbInfo">
+        select DBID dbId, SWITCHOVER_STATUS switchoverStatus, NAME instanceName from v$database
+    </select>
+    <select id='getInstanceNum' resultType="java.lang.Long">
+        SELECT INSTANCE_NUMBER instanceNum FROM v$instance
+    </select>
+    <select id='getSnapId' resultType="java.lang.Long">
+        select snap_id snapId from (select snap_id from DBA_HIST_SNAPSHOT where dbid=#{dbid}
+        order by end_interval_time desc) where rownum &lt; 3
+    </select>
+    <select id='generateAwr' resultType="java.lang.String">
+        SELECT OUTPUT line FROM TABLE(DBMS_WORKLOAD_REPOSITORY.AWR_REPORT_HTML(#{dbid},#{instanceNum},#{bid},#{eid},0))
+    </select>
+</mapper>
