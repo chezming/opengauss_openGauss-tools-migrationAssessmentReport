@@ -78,7 +78,7 @@ public class HomePageRest {
         SystemDetail systemDetail = new SystemDetail();
         this.systemDetail = systemDetail;
         final String datasourceUrl = environment.getProperty("spring.datasource.url");
-        Pattern pattern = Pattern.compile("[a-zA-Z:@]+([0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+):([0-9]+):.*");
+        Pattern pattern = Pattern.compile("[a-zA-Z:@]+([0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+):([0-9]+)(:|/).*");
         Matcher matcher = pattern.matcher(datasourceUrl == null ? Strings.EMPTY : datasourceUrl);
         if (matcher.matches()) {
             systemDetail.setIp(matcher.group(1));
