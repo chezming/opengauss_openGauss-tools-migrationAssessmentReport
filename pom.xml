@@ -15,7 +15,7 @@
         <oracle.jdbc.version>11.2.0.10</oracle.jdbc.version>
         <spring.version>2.2.4.RELEASE</spring.version>
         <spring.boot.maven.plugin.version>2.0.2.RELEASE</spring.boot.maven.plugin.version>
-        <gjson.version>2.8.2</gjson.version>
+        <gjson.version>2.10.1</gjson.version>
         <common.io.version>2.4</common.io.version>
     </properties>
 
